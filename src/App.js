@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+import React, {Suspense} from 'react';
 import './App.css';
+
+import Box from './components/Box';
+import Iphone from './components/Iphone';
+
+import {Canvas} from '@react-three/fiber';
+import {OrbitControls} from '@react-three/drei';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Three.js in React</h1>
+      <Canvas className='canvas'>
+        <OrbitControls enableZoom={false} />
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[-2,5,2]} intensity={1} />
+       <Suspense fallback={null}>
+       <Iphone/>
+       </Suspense>
+       
+      </Canvas>
+      <Canvas className='canvas'>
+        <OrbitControls enableZoom={false} />
+        <ambientLight intensity={0.5} />
+        <directionalLight position={[-2,5,2]} intensity={1} />
+       <Suspense fallback={null}>
+       <Box/>
+       </Suspense>
+       
+      </Canvas>
     </div>
   );
 }
